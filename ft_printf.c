@@ -20,8 +20,8 @@ static void select_type(char s, va_list args, int *printed)
 		printf_putstr(va_arg(args, char *), printed);
 	else if (s == 'p')
 		printf_putvoid(va_arg(args, void *), printed);
-	else if (s == 'd')
-		printf_putdec(va_arg(args, void *), printed);
+	//else if (s == 'd')
+	//	printf_putdec(va_arg(args, void *), printed);
 	else if (s == 'i')
 		printf_putnbr(va_arg(args, int), printed);
 }
