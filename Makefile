@@ -3,33 +3,28 @@ SRCS =	ft_printf.c \
 		printf_putchar.c \
 		printf_putnbr.c \
 		printf_putstr.c \
-		printf_putvoid.c
+		printf_putvoid.c \
+		printf_putunsig.c \
+		printf_puthex.c \
+		printf_putupphex.c
 OBJS = $(SRCS:.c=.o)
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT = libft/libft.a
-INCLUDES = -Ilibft
-
-all: $(LIBFT) $(NAME)
-
-$(LIBFT):
-	make -C libft
+all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS) $(LIBFT)
+	ar rcs $(NAME) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
-	make -C libft clean
 
 fclean: clean
 	rm -f $(NAME)
-	make -C libft fclean
 
 re: fclean all
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 .PHONY: all clean fclean re

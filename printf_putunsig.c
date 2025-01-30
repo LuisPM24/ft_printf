@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   printf_putunsig.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lpalomin <lpalomin@student.42madrid.c      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/22 13:04:56 by lpalomin          #+#    #+#             */
-/*   Updated: 2025/01/22 13:04:58 by lpalomin         ###   ########.fr       */
+/*   Created: 2025/01/30 11:45:47 by lpalomin          #+#    #+#             */
+/*   Updated: 2025/01/30 11:45:51 by lpalomin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	printf_putunsig(unsigned int nb, int *printed)
 {
-	if (!s)
+	int	aux;
+
+	if (nb == 4294967295)
+	{
+		write(1, "4294967295", 10);
+		*printed += 10;
 		return ;
-	write(fd, s, ft_strlen(s));
+	}
+	if (nb >= 10)
+		printf_putunsig(nb / 10, printed);
+	aux = (nb % 10) + '0';
+	write(1, &aux, 1);
+	(*printed)++;
 }

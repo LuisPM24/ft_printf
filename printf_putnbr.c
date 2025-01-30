@@ -19,11 +19,13 @@ void	printf_putnbr(int nb, int *printed)
 	if (nb == -2147483648)
 	{
 		write(1, "-2147483648", 11);
+		*printed += 11;
 		return ;
 	}
 	else if (nb < 0)
 	{
 		write(1, "-", 1);
+		*printed += 1;
 		nb = -nb;
 	}
 	if (nb >= 10)
